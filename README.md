@@ -1,4 +1,4 @@
-# Endpoint Automation Platform (WIP)
+# Endpoint Automation Platform (WIP / Concept)
 
 ## Overview
 
