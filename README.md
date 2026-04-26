@@ -1,5 +1,7 @@
 # Endpoint Automation Platform (WIP / Concept)
 
+![Architecture Diagram](https://github.com/William112792/autopilot-deployment-lab/blob/main/diagrams/UnrealEngine_Architecture_AutopilotSimulator.png?raw=true)
+
 ## Overview
 
 The **Endpoint Automation Platform** is a simulated environment designed to demonstrate modern endpoint management and automation practices, focusing on:
