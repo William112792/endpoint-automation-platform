@@ -1,240 +1,95 @@
-# Endpoint Automation Platform (WIP / Concept)
+# Endpoint Automation Platform (EAP)
 
-![Architecture Diagram](https://github.com/William112792/autopilot-deployment-lab/blob/main/diagrams/UnrealEngine_Architecture_AutopilotSimulator.png?raw=true)
 
-## Overview
 
-The **Endpoint Automation Platform** is a simulated environment designed to demonstrate modern endpoint management and automation practices, focusing on:
+## The Autonomous IT Ecosystem
+The Endpoint Automation Platform (EAP) is a high-level orchestration framework designed to transition IT operations from reactive troubleshooting to autonomous self-healing. By integrating standardized provisioning, structured infrastructure, proactive remediation, and AI-driven intelligence, EAP minimizes manual overhead while maximizing fleet reliability.
 
-* Zero-Touch Provisioning (Windows Autopilot)
-* Microsoft Intune Administration
-* Endpoint Configuration & Compliance
-* Application Deployment
-* Remediation Automation
-* Remote Device Management (vPro EMA Simulation)
+## The Vision
+To create a "closed-loop" management system where:
 
-This project provides a **hands-on, interactive lab experience** using a combination of:
+- Devices are born into a secure, known state.
 
-* Unreal Engine (UI simulation layer)
-* SQLite (data persistence layer)
-* Structured automation logic inspired by real-world enterprise environments
+- Infrastructure provides a predictable, segmented environment.
 
-The goal is to **bridge the gap between theory and execution** by allowing users to simulate enterprise-grade endpoint workflows without requiring a live tenant.
+- Remediations act as an immune system, fixing issues before they are reported.
 
----
+- AI Intelligence monitors the feedback loop, providing early warnings and remediation recommendations for human approval.
 
-## Key Features
+## 🏗 Core Architecture: The Four Pillars
+EAP leverages four foundational components to manage the entire device lifecycle.
 
-### 1. Vendor / Procurement Simulation
+1. Zero-Touch Provisioning
+- Source: autopilot-deployment-lab
 
-* Select device manufacturer and model
-* Auto-generate serial numbers based on defined patterns
-* Assign Group Tags (optional)
-* Prevent duplicate Group Tag creation
-* Simulate device ordering workflows
+- Role: The "Clean Slate" mechanism.
 
----
+- Function: Utilizes Windows Autopilot to ensure every endpoint is enrolled into management without hands-on IT intervention. This layer establishes the security baseline, essential software, and identity configuration.
 
-### 2. Microsoft Intune Admin Center (Simulated)
+- Autonomous Edge: Failures at this stage are automatically logged for the AI Intelligence layer to identify hardware-specific or network-specific trends.
 
-A layered UI system replicating real-world Intune navigation:
+2. Structured Environment
+- Source: layered-infrastructure-lab
 
-#### Top-Level Navigation
+- Role: The Foundation.
 
-* Devices
-* Apps
-* Users
-* Groups
+- Function: Defines the network boundaries, VLAN segmentation, and identity services (Active Directory/Entra ID) required for endpoints to function.
 
-#### Core Capabilities
+- Autonomous Edge: Ensures that automation scripts have the necessary connectivity and permissions to execute, eliminating "environmental variables" as a cause for remediation failure.
 
-* Device enrollment tracking
-* Group Tag assignment
-* Application targeting
-* Remediation script association
-* Device reset and lifecycle management
+3. Proactive Remediation
+- Source: intune-remediation-scripts
 
----
+- Role: The Executioner.
 
-### 3. Remote Management (vPro EMA Simulation)
+- Function: A library of "Detect" and "Remediate" pairs that constantly scan endpoints for configuration drift. If a setting (e.g., a service status, registry key, or disk space threshold) falls out of compliance, the platform fixes it silently.
 
-* Select device by name
-* Power on device remotely
-* Trigger enrollment workflow
-* Simulate:
+- Autonomous Edge: Provides the "Self-Healing" capabilities of the fleet.
 
-  * Device Preparation
-  * Account Setup
-  * Policy & App Deployment
-* Persist enrollment state
-* Reset device from Intune simulation
+4. AI-Driven Intelligence
+- Source: ai-log-analysis-toolkit
 
----
+- Role: The Nervous System.
 
-## Architecture Overview
+- Function: Aggregates logs from Autopilot, Infrastructure, and Intune. It uses AI to perform anomaly detection, pattern recognition, and root-cause analysis.
 
-```
-[ Unreal Engine UI Layer ]
-        ↓
-[ Widget Switchers / UI Logic ]
-        ↓
-[ SQLite3 Database ]
-        ↓
-[ Data Models ]
-    ├── Devices
-    ├── Device Models
-    ├── Manufacturers
-    ├── Group Tags
-    ├── Apps
-    ├── Remediation Scripts
-    ├── Users / Groups
-    └── Device-App Relationships
-```
+- Autonomous Edge: Rather than waiting for a human to read a report, the AI identifies a surge in errors and recommends the specific remediation script needed to resolve the incident.
 
-All UI interactions execute **SQL queries** to simulate real backend behavior.
+## 🔄 The Autonomous Workflow
+EAP operates on a continuous loop of Observe, Orient, Decide, and Act.
 
----
+- Deployment: A device is provisioned via the Autopilot Lab.
 
-## Database Design (Core Tables)
+- Monitoring: The Intune Remediation layer monitors health, while the Infrastructure Lab ensures stable connectivity.
 
-| Table              | Purpose                             |
-| ------------------ | ----------------------------------- |
-| Manufacturers      | Device vendors                      |
-| DeviceModels       | Model definitions + serial patterns |
-| Devices            | Unique device records               |
-| GroupTags          | Logical device grouping             |
-| DeviceGroupTag     | Mapping devices to tags             |
-| Apps               | Application catalog                 |
-| DeviceApps         | Deployment relationships            |
-| RemediationScripts | Script automation logic             |
-| Users / Groups     | Identity simulation                 |
+- Analysis: The AI Toolkit parses telemetry. It identifies a new pattern (e.g., "7% of devices on Subnet B are failing VPN authentication").
 
----
+- Recommendation: The AI reviews the Remediation Script Library and finds a "Reset VPN Interface" script. It generates a report: Cause: Correlation with Firmware Update X. Solution: Deploy Script Y.
 
-## How It Works
+- Human Approval: An admin reviews the AI-generated recommendation. With one click, the remediation is approved for the affected segment.
 
-1. **Procurement Layer**
+- Resolution: The script is deployed. The AI monitors the "After" state and reports the success metric, closing the ticket automatically.
 
-   * Create a device with manufacturer + model
-   * Assign optional Group Tag
+## 🤖 The Role of AI in Scalability
+The AI layer is the catalyst that allows EAP to scale without increasing headcount.
 
-2. **Intune Simulation**
+- Early Warning System: Detects "silent failures" that don't trigger traditional alerts but indicate a growing trend.
 
-   * Configure apps, scripts, and group targeting
-   * Associate configurations with Group Tags
+- Simple Remediations: Handles the logic of matching a problem to an existing solution in the repository.
 
-3. **Remote Management**
+- Metric Synthesis: Converts raw log data into executive-level insights, showing "Man-Hours Saved" and "Fleet Health Scores."
 
-   * Power on device
-   * Trigger Autopilot-like enrollment
-   * Apply configurations dynamically
+- Escalation Logic: When the AI cannot find a matching remediation in the library, it escalates to a human with a "Context Pack" containing all relevant logs, saving the engineer hours of discovery.
 
-4. **State Persistence**
+## 🛠 Integration & Deployment
+To implement the full EAP stack:
 
-   * Enrollment status saved in SQLite
-   * Future boots skip enrollment unless reset
+- Establish the Foundation: Deploy the layered-infrastructure-lab to ensure a stable testing/production environment.
 
----
+- Standardize Entry: Configure autopilot-deployment-lab for hardware onboarding.
 
-## Technologies Used
+- Seed the Immune System: Import the intune-remediation-scripts into your tenant to begin passive monitoring.
 
-* **Unreal Engine**
+- Activate the Intelligence: Point the ai-log-analysis-toolkit at your Log Analytics workspace to begin the feedback loop.
 
-  * Widget Switchers for UI simulation
-  * State-driven navigation
-* **SQLite3**
-
-  * Lightweight relational database
-  * Local persistence for all objects
-* **PowerShell (Future Integration)**
-
-  * Remediation script modeling
-* **Microsoft Intune Concepts**
-
-  * Device lifecycle modeling
-  * Policy + app deployment logic
-
----
-
-## Use Cases
-
-* Demonstrate endpoint automation skills in a portfolio
-* Train new engineers on Intune concepts without tenant access
-* Prototype automation workflows before production rollout
-* Visualize device lifecycle and policy impact
-
----
-
-## Related Repositories
-
-* Autopilot Deployment Lab
-  https://github.com/William112792/autopilot-deployment-lab
-
-* Intune Remediation Scripts
-  https://github.com/William112792/intune-remediation-scripts
-
----
-
-## Future Enhancements
-
-* Primary User assignment logic
-* Compliance policy simulation
-* Conditional Access modeling
-* Reporting dashboards
-* Multi-tenant simulation
-* API integration layer (Graph simulation)
-
----
-
-## Why This Matters
-
-Modern endpoint management is increasingly driven by **automation, APIs, and declarative configuration** rather than manual processes. Platforms like GitHub emphasize automation for managing workflows, infrastructure, and deployments at scale. ([The GitHub Blog][1])
-
-This project demonstrates:
-
-* Practical understanding of endpoint lifecycle automation
-* Ability to model enterprise systems
-* Skills in UI simulation, state management, and data modeling
-* Forward-thinking approach to training and tooling
-
----
-
-## Getting Started (Planned)
-
-```bash
-# Clone repository
-git clone https://github.com/William112792/endpoint-automation-platform
-
-# Open Unreal Engine project
-# Configure SQLite database
-# Launch simulation
-```
-
----
-
-## Contribution
-
-Contributions are welcome:
-
-* New UI modules
-* Additional automation scenarios
-* Expanded database models
-* Script integrations
-
----
-
-## License
-
-MIT License
-
----
-
-## Author
-
-# 👤 Author
-
-Billy Gordon  
-Endpoint Automation Engineer  
-Intune | PowerShell | Automation
-
-[1]: https://github.blog/enterprise-software/automation/?utm_source=chatgpt.com "The latest on automation - The GitHub Blog"
+“The goal of the Endpoint Automation Platform is not to replace the admin, but to free the admin from the mundane, allowing them to focus on the architecture of the future.”
