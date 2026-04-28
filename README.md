@@ -1,6 +1,6 @@
 # Endpoint Automation Platform (EAP)
 
-
+![Endpoint Automation Platform](https://github.com/William112792/endpoint-automation-platform/blob/main/diagrams/Endpoint_Automation_Platform.png?raw=true)
 
 ## The Autonomous IT Ecosystem
 The Endpoint Automation Platform (EAP) is a high-level orchestration framework designed to transition IT operations from reactive troubleshooting to autonomous self-healing. By integrating standardized provisioning, structured infrastructure, proactive remediation, and AI-driven intelligence, EAP minimizes manual overhead while maximizing fleet reliability.
